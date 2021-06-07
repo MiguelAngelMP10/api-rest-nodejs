@@ -1,9 +1,10 @@
 import express from "express";
-let router = express.Router();
+import protectedRoute from "../app/Http/Middleware/protectedRoute.js"
+const router = express.Router();
 
 import ExampleController from "../app/Http/Controllers/ExampleController.js";
 
-router.get("/example", (req, res) => ExampleController.index(req, res));
+router.get("/example", protectedRoute, (req, res) => ExampleController.index(req, res));
 router.post("/example", (req, res) => ExampleController.store(req, res));
 router.get("/example/:id", (req, res) => ExampleController.show(req, res));
 router.put("/example/:id", (req, res) => ExampleController.update(req, res));

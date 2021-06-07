@@ -14,7 +14,7 @@ const ExampleController = {
   update: function (req, res) {
     res.json({ mensaje: "update" });
   },
-  
+
   destroy: function (req, res) {
     res.json({ mensaje: "destroy" });
   },

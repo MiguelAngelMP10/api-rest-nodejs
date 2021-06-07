@@ -1,24 +1,27 @@
 import express from "express";
 import morgan from "morgan";
+import config from "dotenv";
+config.config();
 const app = express();
 
-app.use(morgan('combined'))
+app.use(morgan("tiny"));
 
-app.use(express.json());
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
+app.use(express.json());
 
 const port = process.env.PORT || 8080;
 
 import routerApi from "../routes/api.js";
+import routeAuth from "../routes/auth.js";
 // nuestra ruta irá en http://localhost:8080/api
 // es bueno que haya un prefijo, sobre todo por el tema de versiones de la API
- app.use("/api", routerApi);
-
+app.use("/api", routeAuth);
+app.use("/api", routerApi);
 
 //arrancamos el servidor
 app.listen(port);
-console.log("API escuchando en el puerto " + port);
+console.log(`API escuchando en el puerto http://localhost:${port}`);
