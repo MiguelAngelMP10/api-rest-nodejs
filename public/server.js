@@ -1,11 +1,13 @@
 import express from "express";
 import morgan from "morgan";
 import config from "dotenv";
+import cors from "cors"
 config.config();
 const app = express();
 
 app.use(morgan("tiny"));
 
+app.use(cors())
 app.use(
   express.urlencoded({
     extended: true,
@@ -23,5 +25,6 @@ app.use("/api", routeAuth);
 app.use("/api", routerApi);
 
 //arrancamos el servidor
-app.listen(port);
-console.log(`API escuchando en el puerto http://localhost:${port}`);
+let host = process.env.HOST || "localhost";
+app.listen(port, host);
+console.log(`API escuchando en el puerto http://${host}:${port}`);
