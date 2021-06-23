@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `city` ADD COLUMN `Name2` CHAR(35) NOT NULL DEFAULT '';
